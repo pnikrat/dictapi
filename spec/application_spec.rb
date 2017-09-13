@@ -1,7 +1,12 @@
 require './application'
+require './words_database'
 
 describe 'application' do
   let(:app) { Application.new }
+
+  before :all do
+    WordsDatabase.init('cmudict.dict')
+  end
 
   context 'get to root' do
     let(:response) { get '/' }
@@ -10,7 +15,7 @@ describe 'application' do
     end
 
     it 'has proper body content' do
-      expect(response.body).to include 'Simple'
+      expect(response.body).to include 'false'
     end
   end
 end
