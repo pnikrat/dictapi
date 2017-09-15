@@ -13,4 +13,8 @@ module WordsDatabase
   def self.get_pronounce(word)
     @trie.get_pronounce(word)
   end
+
+  def self.get_suggestions(prefix)
+    @trie.get_suggestions(prefix)
+  end
 end

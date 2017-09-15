@@ -12,4 +12,8 @@ class Trie
   def get_pronounce(word)
     @root.find(word)
   end
+
+  def get_suggestions(prefix)
+    @root.suggest(prefix)
+  end
 end

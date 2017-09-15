@@ -5,6 +5,7 @@ class SuggestController
   end
 
   def prepare_response
-    [404, {}, ['Not implemented yet']]
+    WordsDatabase.get_suggestions(@prefix)
+    # [404, {}, ['Not implemented yet']]
   end
 end
