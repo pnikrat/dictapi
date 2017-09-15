@@ -15,7 +15,7 @@ describe 'application' do
     end
 
     it 'has proper body content' do
-      expect(response.body).to include 'false'
+      expect(response.body).to include 'TRIH2PAH0LEY1'
     end
   end
 end

@@ -21,4 +21,11 @@ class TrieNode
     @children.each { |n| return n if n.key == char }
     nil
   end
+
+  def find(word)
+    return @value if word.length.zero?
+    next_node = determine_next_node(word[0])
+    return nil if next_node.nil?
+    next_node.find(word[1..-1])
+  end
 end

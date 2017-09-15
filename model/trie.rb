@@ -8,4 +8,8 @@ class Trie
   def add_word(word, value)
     @root.insert(word, value)
   end
+
+  def get_pronounce(word)
+    @root.find(word)
+  end
 end
