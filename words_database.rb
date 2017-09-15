@@ -8,7 +8,6 @@ module WordsDatabase
     file.each do |line|
       @trie.add_word(line.split[0], line.split[1..-1].join)
     end
-    # binding.pry
   end
 
   def self.get_pronounce(word)
