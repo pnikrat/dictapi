@@ -23,11 +23,12 @@ describe 'pronounce_controller' do
     end
 
     it 'has proper body content' do
-      expect(response.body).to include 'AH0BAE1NDAH0N'
+      parsed_body = JSON.parse(response.body)
+      expect(parsed_body['abandon']).to eq 'AH0BAE1NDAH0N'
     end
 
     it 'contains proper content type header' do
-      expect(response.header['Content-Type']).to eq 'text/html'
+      expect(response.header['Content-Type']).to eq 'application/json'
     end
   end
 end

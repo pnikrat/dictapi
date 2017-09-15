@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.4.1'
 
+gem 'json', '~> 2.1'
 gem 'pry', '~> 0.10.4'
 gem 'rack', '~> 2.0', '>= 2.0.3'
 
