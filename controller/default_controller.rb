@@ -1,15 +1,24 @@
 # Default controller behaviour, inherited by suggest and pronounce controllers
 class DefaultController
   def prepare_response
-    response = Rack::Response.new
+    @response = Rack::Response.new
     construct_json
     if @body == 'null'
-      response.write('Resource does not exist')
-      response['Content-Type'] = 'text/html'
+      prepare_404_response
     else
-      response.write(@body)
-      response['Content-Type'] = 'application/json'
+      prepare_200_response
     end
-    response.finish
+    @response.finish
+  end
+
+  def prepare_404_response
+    @response.write('Resource does not exist')
+    @response['Content-Type'] = 'text/html'
+    @response.status = 404
+  end
+
+  def prepare_200_response
+    @response.write(@body)
+    @response['Content-Type'] = 'application/json'
   end
 end

@@ -7,6 +7,11 @@ class PronounceController < DefaultController
   end
 
   def construct_json
-    @body = JSON.pretty_generate(@word => WordsDatabase.get_pronounce(@word))
+    pronounce = WordsDatabase.get_pronounce(@word)
+    @body = if pronounce.nil?
+              'null'
+            else
+              JSON.pretty_generate(@word => pronounce)
+            end
   end
 end

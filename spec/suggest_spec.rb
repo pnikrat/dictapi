@@ -10,6 +10,7 @@ describe 'suggest controller' do
 
   context '/suggest/:prefix endpoint' do
     let(:response) { get '/suggest/abide' }
+    let(:bad_response) { get '/suggest/fooooooooooooooo' }
 
     it 'has status code of 200' do
       expect(response.status).to eq 200
@@ -22,6 +23,10 @@ describe 'suggest controller' do
 
     it 'contains correct content type header' do
       expect(response.header['Content-Type']).to eq 'application/json'
+    end
+
+    it 'has status code of 404 for resources that dont exist' do
+      expect(bad_response.status).to eq 404
     end
   end
 end

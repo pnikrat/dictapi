@@ -1,6 +1,14 @@
 require './application'
 require './words_database'
 
+describe 'root path endpoint' do
+  let(:app) { Application.new }
+  let(:response) { get '/' }
+  it 'has status code of 404' do
+    expect(response.status).to eq 404
+  end
+end
+
 describe 'pronounce_controller' do
   let(:app) { Application.new }
 
@@ -8,15 +16,9 @@ describe 'pronounce_controller' do
     WordsDatabase.init('cmudict.dict')
   end
 
-  context 'root / endpoint' do
-    let(:response) { get '/' }
-    it 'has status code of 404' do
-      expect(response.status).to eq 404
-    end
-  end
-
   context '/pronounce/:word endpoint' do
     let(:response) { get '/pronounce/abandon' }
+    let(:bad_response) { get '/pronounce/fooooooooooooooooo' }
 
     it 'has status code of 200' do
       expect(response.status).to eq 200
@@ -29,6 +31,10 @@ describe 'pronounce_controller' do
 
     it 'contains proper content type header' do
       expect(response.header['Content-Type']).to eq 'application/json'
+    end
+
+    it 'has status code of 404 for resources that dont exist' do
+      expect(bad_response.status).to eq 404
     end
   end
 end
