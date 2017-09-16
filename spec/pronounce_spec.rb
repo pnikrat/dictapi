@@ -1,19 +1,13 @@
 require './app/application'
-require './model/words_database'
-
-describe 'root path endpoint' do
-  let(:app) { Application.new }
-  let(:response) { get '/' }
-  it 'has status code of 404' do
-    expect(response.status).to eq 404
-  end
-end
 
 describe 'pronounce_controller' do
   let(:app) { Application.new }
 
-  before :all do
-    WordsDatabase.init('./model/cmudict.dict')
+  context 'root path endpoint' do
+    let(:response) { get '/' }
+    it 'has status code of 404' do
+      expect(response.status).to eq 404
+    end
   end
 
   context '/pronounce/:word endpoint' do
