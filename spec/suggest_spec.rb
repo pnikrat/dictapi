@@ -1,11 +1,11 @@
-require './application'
-require './words_database'
+require './app/application'
+require './model/words_database'
 
 describe 'suggest controller' do
   let(:app) { Application.new }
 
   before :all do
-    WordsDatabase.init('cmudict.dict')
+    WordsDatabase.init('./model/cmudict.dict')
   end
 
   context '/suggest/:prefix endpoint' do

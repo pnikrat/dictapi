@@ -1,5 +1,5 @@
-require './application'
-require './words_database'
+require './app/application'
+require './model/words_database'
 
 describe 'root path endpoint' do
   let(:app) { Application.new }
@@ -13,7 +13,7 @@ describe 'pronounce_controller' do
   let(:app) { Application.new }
 
   before :all do
-    WordsDatabase.init('cmudict.dict')
+    WordsDatabase.init('./model/cmudict.dict')
   end
 
   context '/pronounce/:word endpoint' do

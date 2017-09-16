@@ -1,4 +1,4 @@
-require './words_database'
+require './model/words_database'
 
 describe 'trie word insert and retrieval' do
   before :all do
