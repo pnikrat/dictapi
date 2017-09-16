@@ -15,6 +15,9 @@ module WordsDatabase
   end
 
   def self.get_suggestions(prefix)
-    @trie.get_suggestions(prefix)
+    suggestions = @trie.get_suggestions(prefix)
+    return suggestions if suggestions.nil?
+    prefixed = Hash[suggestions.map { |k, v| [prefix + k[1, k.length - 1], v] }]
+    prefixed
   end
 end
