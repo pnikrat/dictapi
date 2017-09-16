@@ -1,16 +1,9 @@
 require 'json'
+require './controller/default_controller'
 # Prepares responses for requests made to '/pronounce/:word endpoint'
-class PronounceController
+class PronounceController < DefaultController
   def initialize(word)
     @word = word
-  end
-
-  def prepare_response
-    response = Rack::Response.new
-    construct_json
-    response.write(@body)
-    response['Content-Type'] = 'application/json'
-    response.finish
   end
 
   def construct_json

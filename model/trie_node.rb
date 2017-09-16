@@ -53,11 +53,10 @@ class TrieNode
   def search_children(start_node, previous_char)
     @children.each do |child|
       break if start_node.suggestions.length >= 10
-      if child.value.nil?
-        child.search_children(start_node, previous_char + child.key)
-      else
+      unless child.value.nil?
         start_node.suggestions['_' + previous_char + child.key] = child.value
       end
+      child.search_children(start_node, previous_char + child.key)
     end
   end
 end

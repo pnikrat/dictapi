@@ -1,5 +1,4 @@
 require './model/trie'
-require 'pry'
 # Static class containing words' dictionary in a trie data structure
 module WordsDatabase
   def self.init(filename)

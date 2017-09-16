@@ -1,11 +1,12 @@
-# tbd
-class SuggestController
+require 'json'
+require './controller/default_controller'
+# Prepares responses for requests made to '/suggest/:prefix' endpoint
+class SuggestController < DefaultController
   def initialize(prefix)
     @prefix = prefix
   end
 
-  def prepare_response
-    WordsDatabase.get_suggestions(@prefix)
-    # [404, {}, ['Not implemented yet']]
+  def construct_json
+    @body = JSON.pretty_generate(WordsDatabase.get_suggestions(@prefix))
   end
 end
