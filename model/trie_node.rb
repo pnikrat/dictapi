@@ -9,11 +9,8 @@ class TrieNode
   end
 
   def insert(word, value)
-    next_node = determine_next_node(word[0])
-    if next_node.nil? && word.length >= 1
-      next_node = TrieNode.new(word[0])
-      @children.push(next_node)
-    end
+    return second_pronounciation(value) if word[0] == '('
+    next_node = check_for_node_existence(word)
     next_node.insert(word[1..-1], value) if word.length >= 1
     @value = value if word.length.zero?
   end
@@ -30,9 +27,26 @@ class TrieNode
 
   private
 
+  def second_pronounciation(value)
+    if @value.is_a?(Array)
+      @value.push(value)
+    else
+      @value = [@value, value]
+    end
+  end
+
   def determine_next_node(char)
     @children.each { |n| return n if n.key == char }
     nil
+  end
+
+  def check_for_node_existence(word)
+    next_node = determine_next_node(word[0])
+    if next_node.nil? && word.length >= 1
+      next_node = TrieNode.new(word[0])
+      @children.push(next_node)
+    end
+    next_node
   end
 
   def traverse_trie(word)

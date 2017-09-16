@@ -15,8 +15,10 @@ describe 'trie word insert and retrieval' do
   end
 
   it 'has correct behaviour when word has two pronounciations' do
-    # implement two pronounciations as array of strings?
-    expect(db.get_pronounce("job's(2)")).to eq 'JHOW1BZ'
+    expect(db.get_pronounce("job's")).to include(
+      'JHOW1BZ',
+      'JHAA1BZ'
+    )
   end
 
   it 'returns nil when asked for word that does not exist' do
@@ -50,5 +52,9 @@ describe 'trie suggestions based on prefix' do
 
   it 'contains only one suggestion in a hash if asked for a specific word' do
     expect(db.get_suggestions('gegenheimer').length).to eq 1
+  end
+
+  it 'returns multiple pronounciations words correctly among suggestions' do
+    expect(db.get_suggestions('supplement')['supplementary'].length).to eq 4
   end
 end
